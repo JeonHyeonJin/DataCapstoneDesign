@@ -32,7 +32,8 @@
   
 • PCA는 데이터의 분산(variance)을 최대한 보존하면서 서로 직교하는 새 기저(축)를 찾아, 고차원 공간의 표본들을 선형 연관성이 없는저차원 공간으로 변환하는 기법으로, 주성분 분석, 데이터 압축 등에 활용된다. 본 연구에서는 <strong>새로운 축으로 raw data를 저차원 공간으로 변환</strong>하는데 사용한다.</li>
 <li>RNN - LSTM<br>
-  <img src="https://user-images.githubusercontent.com/50453570/102902779-c088f280-44b2-11eb-8bd3-f5616b861888.png" width="50%"></img>
+  <img src="https://user-images.githubusercontent.com/50453570/102902779-c088f280-44b2-11eb-8bd3-f5616b861888.png" width="40%"></img>
+  
 • RNN(Recurrent Neural Network)은 순환 신경망으로, 고정 길이 입력이 아닌 임의의 시퀀스를 다룰 수 있는 신경망이다.<br>
 • 이때, LSTM셀은 RNN 신경망 구조에서 빠른 훈련 수렴과 데이터 장기 의존성을 지원하는 층으로, LSTM에서는 해당 층의 출력이 곧바로 나가지 않고 장기 상태에서 가장 중요한 부분이 저장된다.</li>
 <li>Linear Regression<br>
@@ -48,18 +49,18 @@
 <li>data type은 string, int64, object, boolean, link와 같이 다양한 타입이 존재한다.</li>
 </ul>
 <p><strong>사용 attribute</strong></p>
-![image](https://user-images.githubusercontent.com/50453570/102903194-558beb80-44b3-11eb-96d7-2f8c16b7bb5f.png)
+<img src="https://user-images.githubusercontent.com/50453570/102903194-558beb80-44b3-11eb-96d7-2f8c16b7bb5f.png" width="30%"></img>
 <p><strong>publisht time에 따른 조회수(views)</strong></p>
 <img src="https://user-images.githubusercontent.com/50453570/102903740-19a55600-44b4-11eb-9bc7-c04a72f2fe27.png" width="90%"></img>
 
 <p><strong>1. Correlation Analysis</strong></p>
-<img src="https://user-images.githubusercontent.com/50453570/102903227-60468080-44b3-11eb-9a68-6c0c326c789e.png" width="60%"></img>
+<img src="https://user-images.githubusercontent.com/50453570/102903227-60468080-44b3-11eb-9a68-6c0c326c789e.png" width="45%"></img>
 <blockquote>
 <p>• views-comment_count : 매우 강한 상관관계<br>
 • views-likes : 강한 상관관계<br>
 • views-dislikes : 중간 정도 상관관계<br>
 • category_id-views / publish_time-views : 상관성이 거의 없음.</p>
-  ![image](https://user-images.githubusercontent.com/50453570/102903227-60468080-44b3-11eb-9a68-6c0c326c789e.png)
+
 </blockquote>
 <p><strong>2. Multiple Linear Regression - OLS</strong></p>
 <blockquote>
@@ -82,7 +83,7 @@ R-squared score - 78% 의 성능 결과가 나왔다.</p>
 <img src="https://user-images.githubusercontent.com/50453570/102903373-997ef080-44b3-11eb-95e2-8e5f65d8bb95.png" width="40%"></img>
 
 <p>이를 기반으로 2달 뒤의 조회수를 예측한 결과,<br>
-**299,370(views)**이다.</p>
+##299,370(views)##이다.</p>
 <p><strong>4. RNN-LSTM</strong><br>
 LSTM의 Unit 개수를 다르게 하여 unit 16, 20, 32개로 조회수 예측을 했다.</p>
 <ol>
