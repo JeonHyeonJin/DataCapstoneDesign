@@ -27,7 +27,9 @@
 <li>Discussion &amp; Futureworks</li>
 </ol>
 <h2 id="연구-기법">연구 기법</h2>
+<img src="https://user-images.githubusercontent.com/50453570/102893600-35553000-44a5-11eb-9174-51cf0434b8bb.png" width="90%"></img>
 <ol>
+  ![image](https://user-images.githubusercontent.com/50453570/102906716-5ffcb400-44b8-11eb-8cb0-c41bc14d392e.png)
 <li>PCA<br>
 • PCA는 데이터의 분산(variance)을 최대한 보존하면서 서로 직교하는 새 기저(축)를 찾아, 고차원 공간의 표본들을 선형 연관성이 없는저차원 공간으로 변환하는 기법으로, 주성분 분석, 데이터 압축 등에 활용된다. 본 연구에서는 <strong>새로운 축으로 raw data를 저차원 공간으로 변환</strong>하는데 사용한다.</li>
 <li>RNN - LSTM<br>
@@ -41,9 +43,7 @@
 </ol>
 <h2 id="연구-결과">연구 결과</h2>
 <p><strong>kaggle-한국유튜브인기동영상 Raw Data</strong></p>
-![image](https://user-images.githubusercontent.com/50453570/102903112-3c833a80-44b3-11eb-8efa-da54a1c4a780.png)
-<ul>
-  <img src="https://user-images.githubusercontent.com/50453570/102893600-35553000-44a5-11eb-9174-51cf0434b8bb.png" width="90%"></img>
+<img src="https://user-images.githubusercontent.com/50453570/102903112-3c833a80-44b3-11eb-8efa-da54a1c4a780.png" width="90%"></img>
 <li>Raw data에는 총 16개의 column이 존재한다.</li>
 <li>data type은 string, int64, object, boolean, link와 같이 다양한 타입이 존재한다.</li>
 </ul>
@@ -51,7 +51,7 @@
 ![image](https://user-images.githubusercontent.com/50453570/102903194-558beb80-44b3-11eb-96d7-2f8c16b7bb5f.png)
 
 <p><strong>publisht time에 따른 조회수(views)</strong></p>
-![image](https://user-images.githubusercontent.com/50453570/102903740-19a55600-44b4-11eb-9bc7-c04a72f2fe27.png)
+<img src="https://user-images.githubusercontent.com/50453570/102903740-19a55600-44b4-11eb-9bc7-c04a72f2fe27.png" width="90%"></img>
 
 <p><strong>1. Correlation Analysis</strong></p>
 <blockquote>
@@ -89,7 +89,7 @@ LSTM의 Unit 개수를 다르게 하여 unit 16, 20, 32개로 조회수 예측�
 <li>Unit 16</li>
   ![image](https://user-images.githubusercontent.com/50453570/102903800-2b86f900-44b4-11eb-9b89-102e52feaa06.png)
 <li>Unit 20</li>
-  ![image](https://user-images.githubusercontent.com/50453570/102903438-b0bdde00-44b3-11eb-8cd4-0b155001eae6.png)
+  <img src="https://user-images.githubusercontent.com/50453570/102903438-b0bdde00-44b3-11eb-8cd4-0b155001eae6.png"</img>
 <li>Unit 32</li>
   ![image](https://user-images.githubusercontent.com/50453570/102903498-c4694480-44b3-11eb-9d8f-42805bfdda93.png)
 
