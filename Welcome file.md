@@ -40,18 +40,24 @@
 </ol>
 <h2 id="연구-결과">연구 결과</h2>
 <p><strong>kaggle-한국유튜브인기동영상 Raw Data</strong></p>
+![image](https://user-images.githubusercontent.com/50453570/102903112-3c833a80-44b3-11eb-8efa-da54a1c4a780.png)
 <ul>
 <li>Raw data에는 총 16개의 column이 존재한다.</li>
 <li>data type은 string, int64, object, boolean, link와 같이 다양한 타입이 존재한다.</li>
 </ul>
 <p><strong>사용 attribute</strong></p>
+![image](https://user-images.githubusercontent.com/50453570/102903194-558beb80-44b3-11eb-96d7-2f8c16b7bb5f.png)
+
 <p><strong>publisht time에 따른 조회수(views)</strong></p>
+![image](https://user-images.githubusercontent.com/50453570/102903740-19a55600-44b4-11eb-9bc7-c04a72f2fe27.png)
+
 <p><strong>1. Correlation Analysis</strong></p>
 <blockquote>
 <p>• views-comment_count : 매우 강한 상관관계<br>
 • views-likes : 강한 상관관계<br>
 • views-dislikes : 중간 정도 상관관계<br>
 • category_id-views / publish_time-views : 상관성이 거의 없음.</p>
+  ![image](https://user-images.githubusercontent.com/50453570/102903227-60468080-44b3-11eb-9a68-6c0c326c789e.png)
 </blockquote>
 <p><strong>2. Multiple Linear Regression - OLS</strong></p>
 <blockquote>
@@ -71,14 +77,20 @@ K-fold Validation Score (MSE)</p>
 <p>Training Validation Score가 가장 높은 Elastic Net에 Test set을 fit시킨 결과,<br>
 MSE score - 71.5%<br>
 R-squared score - 78% 의 성능 결과가 나왔다.</p>
+![image](https://user-images.githubusercontent.com/50453570/102903373-997ef080-44b3-11eb-95e2-8e5f65d8bb95.png)
+
 <p>이를 기반으로 2달 뒤의 조회수를 예측한 결과,<br>
 **299,370(views)**이다.</p>
 <p><strong>4. RNN-LSTM</strong><br>
 LSTM의 Unit 개수를 다르게 하여 unit 16, 20, 32개로 조회수 예측을 했다.</p>
 <ol>
 <li>Unit 16</li>
+  ![image](https://user-images.githubusercontent.com/50453570/102903800-2b86f900-44b4-11eb-9b89-102e52feaa06.png)
 <li>Unit 20</li>
+  ![image](https://user-images.githubusercontent.com/50453570/102903438-b0bdde00-44b3-11eb-8cd4-0b155001eae6.png)
 <li>Unit 32</li>
+  ![image](https://user-images.githubusercontent.com/50453570/102903498-c4694480-44b3-11eb-9d8f-42805bfdda93.png)
+
 </ol>
 <h2 id="결론-및-제언">결론 및 제언</h2>
 <ul>
