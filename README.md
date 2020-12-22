@@ -19,6 +19,7 @@
 </ul>
 <h2 id="연구-진행-과정">연구 진행 과정</h2>
 <ol>
+  ![corr](https://user-images.githubusercontent.com/50453570/102894039-d7751800-44a5-11eb-9bfa-3aa90e81bf13.png)
 <li>Data Exploration</li>
 <li>Data Preperation</li>
 <li>Modeling</li>
