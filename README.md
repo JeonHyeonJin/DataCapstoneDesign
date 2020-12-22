@@ -19,7 +19,6 @@
 </ul>
 <h2 id="연구-진행-과정">연구 진행 과정</h2>
 <ol>
-  ![corr](https://user-images.githubusercontent.com/50453570/102894039-d7751800-44a5-11eb-9bfa-3aa90e81bf13.png)
 <li>Data Exploration</li>
 <li>Data Preperation</li>
 <li>Modeling</li>
@@ -49,11 +48,12 @@
 </ul>
 <p><strong>사용 attribute</strong></p>
 ![image](https://user-images.githubusercontent.com/50453570/102903194-558beb80-44b3-11eb-96d7-2f8c16b7bb5f.png)
-
 <p><strong>publisht time에 따른 조회수(views)</strong></p>
 <img src="https://user-images.githubusercontent.com/50453570/102903740-19a55600-44b4-11eb-9bc7-c04a72f2fe27.png" width="90%"></img>
 
 <p><strong>1. Correlation Analysis</strong></p>
+###
+![image](https://user-images.githubusercontent.com/50453570/102903227-60468080-44b3-11eb-9a68-6c0c326c789e.png)
 <blockquote>
 <p>• views-comment_count : 매우 강한 상관관계<br>
 • views-likes : 강한 상관관계<br>
@@ -87,13 +87,18 @@ R-squared score - 78% 의 성능 결과가 나왔다.</p>
 LSTM의 Unit 개수를 다르게 하여 unit 16, 20, 32개로 조회수 예측을 했다.</p>
 <ol>
 <li>Unit 16</li>
-  ![image](https://user-images.githubusercontent.com/50453570/102903800-2b86f900-44b4-11eb-9b89-102e52feaa06.png)
+<img src="https://user-images.githubusercontent.com/50453570/102903800-2b86f900-44b4-11eb-9b89-102e52feaa06.png" width="70%"></img>
 <li>Unit 20</li>
-  <img src="https://user-images.githubusercontent.com/50453570/102903438-b0bdde00-44b3-11eb-8cd4-0b155001eae6.png"</img>
+<img src="https://user-images.githubusercontent.com/50453570/102903438-b0bdde00-44b3-11eb-8cd4-0b155001eae6.png" width="70%"></img>
 <li>Unit 32</li>
-  ![image](https://user-images.githubusercontent.com/50453570/102903498-c4694480-44b3-11eb-9d8f-42805bfdda93.png)
+<img src="https://user-images.githubusercontent.com/50453570/102903498-c4694480-44b3-11eb-9d8f-42805bfdda93.png" width="70%"></img>
 
 </ol>
+
+###그림
+![1105_dislikes삭제,batchsize_64](https://user-images.githubusercontent.com/50453570/102908078-4bb9b680-44ba-11eb-85f1-fd85050ec179.png)
+###ㄹ
+![image](https://user-images.githubusercontent.com/50453570/102903373-997ef080-44b3-11eb-95e2-8e5f65d8bb95.png)
 <h2 id="결론-및-제언">결론 및 제언</h2>
 <ul>
 <li>결과적으로 가장 성능이 좋았던 모델링 방법은 PCA를 pipeline을 이용해 ElasticNet Regression모델과 연결 한 것이었다. 이때, PCA의 주성분인 PC의 개수는 3개로 지정하였으며, 이는 기존 분산량의 98.3%이상을 보 존한다. 해당 모델의 Test score(MSE)는 71.5%, Train score는 78%였다. 이를 기반으로 한 2달 뒤의 유튜브 조회수는 299,370회였다. PCA를 적용하지 않았을 때보다 25% 이상 높아진 결과로써, 변동성이 큰 유튜브 조회수의 데이터 특성상, PCA로 데이터를 압축하는 것이 분석에 효과적이었음을 알 수 있다. 한편, 높은 성 능을 기대했던 다층퍼셉트론, RNN의 LSTM셀을 이용한 방법에서는 Accuracy 혹은 MSE와 같은 평가 척도가 0에 가까운 것을 확인했다. 하이퍼파라미터나 활성화 함수의 변경에 따라 결과의 차이가 있을 수 있으나, 단지 구조가 복잡한 모델링 기법을 사용한다고 해서 성능의 향상을 기대할 수 없음을 알 수 있었다.</li>
