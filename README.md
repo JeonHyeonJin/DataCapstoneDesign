@@ -27,21 +27,24 @@
 </ol>
 <h2 id="연구-기법">연구 기법</h2>
 <ol>
-<li>PCA<br>
+<li><strong>PCA</strong><br>
   <img src="https://user-images.githubusercontent.com/50453570/102902818-cbdc1e00-44b2-11eb-855f-24d72d055c30.png" width="40%"></img>
   
 • PCA는 데이터의 분산(variance)을 최대한 보존하면서 서로 직교하는 새 기저(축)를 찾아, 고차원 공간의 표본들을 선형 연관성이 없는저차원 공간으로 변환하는 기법으로, 주성분 분석, 데이터 압축 등에 활용된다. 본 연구에서는 <strong>새로운 축으로 raw data를 저차원 공간으로 변환</strong>하는데 사용한다.</li>
-<li>RNN - LSTM<br>
+
+<li><strong>RNN - LSTM</strong><br>
   <img src="https://user-images.githubusercontent.com/50453570/102902779-c088f280-44b2-11eb-8bd3-f5616b861888.png" width="40%"></img>
   
 • RNN(Recurrent Neural Network)은 순환 신경망으로, 고정 길이 입력이 아닌 임의의 시퀀스를 다룰 수 있는 신경망이다.<br>
 • 이때, LSTM셀은 RNN 신경망 구조에서 빠른 훈련 수렴과 데이터 장기 의존성을 지원하는 층으로, LSTM에서는 해당 층의 출력이 곧바로 나가지 않고 장기 상태에서 가장 중요한 부분이 저장된다.</li>
-<li>Linear Regression<br>
+
+<li><strong>Linear Regression</strong><br>
 • Baseline Linear Regression<br>
 • Lasso Regression<br>
 • ElasticNet Regression<br>
 에서 Lasso와 ElasticNet은 규제(Regularized)파라미터가 존재하기 때문에 과적합(Overfitting)을 방지한다. 이때 규제의 강도는 Lasso가 가장 강하며, ElasticNet은 Ridge와 Lasso의 규제항을 합한 모델이다.</li>
 </ol>
+
 <h2 id="연구-결과">연구 결과</h2>
 <p><strong>kaggle-한국유튜브인기동영상 Raw Data</strong></p>
 <img src="https://user-images.githubusercontent.com/50453570/102903112-3c833a80-44b3-11eb-8efa-da54a1c4a780.png" width="80%"></img>
@@ -83,7 +86,9 @@ R-squared score - 78% 의 성능 결과가 나왔다.</p>
 <img src="https://user-images.githubusercontent.com/50453570/102903373-997ef080-44b3-11eb-95e2-8e5f65d8bb95.png" width="40%"></img>
 
 <p>이를 기반으로 2달 뒤의 조회수를 예측한 결과,<br>
-##299,370(views)##이다.</p>
+299,370(views)이다.</p>
+
+
 <p><strong>4. RNN-LSTM</strong><br>
 LSTM의 Unit 개수를 다르게 하여 unit 16, 20, 32개로 조회수 예측을 했다.</p>
 <ol>
@@ -98,6 +103,7 @@ LSTM의 Unit 개수를 다르게 하여 unit 16, 20, 32개로 조회수 예측�
 <h2 id="결론-및-제언">결론 및 제언</h2>
 <ul>
 <li>결과적으로 가장 성능이 좋았던 모델링 방법은 PCA를 pipeline을 이용해 ElasticNet Regression모델과 연결 한 것이었다. 이때, PCA의 주성분인 PC의 개수는 3개로 지정하였으며, 이는 기존 분산량의 98.3%이상을 보 존한다. 해당 모델의 Test score(MSE)는 71.5%, Train score는 78%였다. 이를 기반으로 한 2달 뒤의 유튜브 조회수는 299,370회였다. PCA를 적용하지 않았을 때보다 25% 이상 높아진 결과로써, 변동성이 큰 유튜브 조회수의 데이터 특성상, PCA로 데이터를 압축하는 것이 분석에 효과적이었음을 알 수 있다. 한편, 높은 성 능을 기대했던 다층퍼셉트론, RNN의 LSTM셀을 이용한 방법에서는 Accuracy 혹은 MSE와 같은 평가 척도가 0에 가까운 것을 확인했다. 하이퍼파라미터나 활성화 함수의 변경에 따라 결과의 차이가 있을 수 있으나, 단지 구조가 복잡한 모델링 기법을 사용한다고 해서 성능의 향상을 기대할 수 없음을 알 수 있었다.</li>
+  
 <li>이는 각기 다른 채널, 영상들의 전반적인 시 간에 따른 유튜브 조회수를 예측한 것이므로 향후 각 개인 채널별 영상들을 데이터 셋으로 선정한다면 해 당 모델을 이용하여 조회수를 예측하고, 컨텐츠 선정이 가능해보인다. 다만, 시도한 모델의 기법들이 다양하 므로 평가 척도가 고르지 못한 점, 각 기법들 중 가장 훈련 성과가 좋았던 모델을 중심으로 하이퍼파라미터 튜닝이 세분화되어 이루어지지 못한 것이 한계점이다. 따라서 후속 연구에는 하이퍼파라미터 튜닝, 조회수에 영향을 미치는 요인 및 조회수를 기반으로한 컨텐츠 제작 아이디어 추천 등의 다양한 분야에 대한 접근을 기대하는 바이다</li>
 </ul>
 <h2 id="참고-자료">참고 자료</h2>
