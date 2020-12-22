@@ -42,6 +42,7 @@
 <p><strong>kaggle-한국유튜브인기동영상 Raw Data</strong></p>
 ![image](https://user-images.githubusercontent.com/50453570/102903112-3c833a80-44b3-11eb-8efa-da54a1c4a780.png)
 <ul>
+  <img src="https://user-images.githubusercontent.com/50453570/102893600-35553000-44a5-11eb-9174-51cf0434b8bb.png" width="90%"></img>
 <li>Raw data에는 총 16개의 column이 존재한다.</li>
 <li>data type은 string, int64, object, boolean, link와 같이 다양한 타입이 존재한다.</li>
 </ul>
