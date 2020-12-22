@@ -25,7 +25,27 @@
 <li>Evaluation</li>
 <li>Discussion &amp; Futureworks</li>
 </ol>
+<h2 id="연구-기법">연구 기법</h2>
+<ol>
+<li>PCA<br>
+• PCA는 데이터의 분산(variance)을 최대한 보존하면서 서로 직교하는 새 기저(축)를 찾아, 고차원 공간의 표본들을 선형 연관성이 없는저차원 공간으로 변환하는 기법으로, 주성분 분석, 데이터 압축 등에 활용된다. 본 연구에서는 <strong>새로운 축으로 raw data를 저차원 공간으로 변환</strong>하는데 사용한다.</li>
+<li>RNN - LSTM<br>
+• RNN(Recurrent Neural Network)은 순환 신경망으로, 고정 길이 입력이 아닌 임의의 시퀀스를 다룰 수 있는 신경망이다.<br>
+• 이때, LSTM셀은 RNN 신경망 구조에서 빠른 훈련 수렴과 데이터 장기 의존성을 지원하는 층으로, LSTM에서는 해당 층의 출력이 곧바로 나가지 않고 장기 상태에서 가장 중요한 부분이 저장된다.</li>
+<li>Linear Regression<br>
+• Baseline Linear Regression<br>
+• Lasso Regression<br>
+• ElasticNet Regression<br>
+에서 Lasso와 ElasticNet은 규제(Regularized)파라미터가 존재하기 때문에 과적합(Overfitting)을 방지한다. 이때 규제의 강도는 Lasso가 가장 강하며, ElasticNet은 Ridge와 Lasso의 규제항을 합한 모델이다.</li>
+</ol>
 <h2 id="연구-결과">연구 결과</h2>
+<p><strong>kaggle-한국유튜브인기동영상 Raw Data</strong></p>
+<ul>
+<li>Raw data에는 총 16개의 column이 존재한다.</li>
+<li>data type은 string, int64, object, boolean, link와 같이 다양한 타입이 존재한다.</li>
+</ul>
+<p><strong>사용 attribute</strong></p>
+<p><strong>publisht time에 따른 조회수(views)</strong></p>
 <p><strong>1. Correlation Analysis</strong></p>
 <blockquote>
 <p>• views-comment_count : 매우 강한 상관관계<br>
@@ -35,7 +55,9 @@
 </blockquote>
 <p><strong>2. Multiple Linear Regression - OLS</strong></p>
 <blockquote>
-<p>선형식</p>
+<p>선형식<br>
+views = 210100 + 54.6277dislikes - 26.9779comment + 19.6944likes<br>
+R-squred 80.2% (모델이 views변동성의 80.2%를 설명)</p>
 </blockquote>
 <p><strong>3. PCA with Regression using Pipeline</strong><br>
 K-fold Validation Score (MSE)</p>
@@ -46,106 +68,25 @@ K-fold Validation Score (MSE)</p>
 <li>ElasticNet - cv3: 65.5%, cv10: 62.5%</li>
 </ol>
 </blockquote>
-<p>You can delete the current file by clicking the <strong>Remove</strong> button in the file explorer. The file will be moved into the <strong>Trash</strong> folder and automatically deleted after 7 days of inactivity.</p>
-<h2 id="rnn-lstm">3. RNN-LSTM</h2>
+<p>Training Validation Score가 가장 높은 Elastic Net에 Test set을 fit시킨 결과,<br>
+MSE score - 71.5%<br>
+R-squared score - 78% 의 성능 결과가 나왔다.</p>
+<p>이를 기반으로 2달 뒤의 조회수를 예측한 결과,<br>
+**299,370(views)**이다.</p>
+<p><strong>4. RNN-LSTM</strong><br>
+LSTM의 Unit 개수를 다르게 하여 unit 16, 20, 32개로 조회수 예측을 했다.</p>
 <ol>
 <li>Unit 16</li>
-<li>Unit 20<img src="!%5Bimage%5D%28https://user-images.githubusercontent.com/50453570/102892801-c62b0c00-44a3-11eb-853d-f1995dce7b4d.png%29" alt="dd"><img src="!%5Bimage%5D%28https://user-images.githubusercontent.com/50453570/102892475-44d37980-44a3-11eb-9550-91e6c80a738d.png%29" alt="unit20"></li>
+<li>Unit 20</li>
 <li>Unit 32</li>
 </ol>
-<p>You can export the current file by clicking <strong>Export to disk</strong> in the menu. You can choose to export the file as plain Markdown, as HTML using a Handlebars template or as a PDF.</p>
-<h1 id="synchronization">Synchronization</h1>
-<p>Synchronization is one of the biggest features of StackEdit. It enables you to synchronize any file in your workspace with other files stored in your <strong>Google Drive</strong>, your <strong>Dropbox</strong> and your <strong>GitHub</strong> accounts. This allows you to keep writing on other devices, collaborate with people you share the file with, integrate easily into your workflow… The synchronization mechanism takes place every minute in the background, downloading, merging, and uploading file modifications.</p>
-<p>There are two types of synchronization and they can complement each other:</p>
+<h2 id="결론-및-제언">결론 및 제언</h2>
 <ul>
-<li>
-<p>The workspace synchronization will sync all your files, folders and settings automatically. This will allow you to fetch your workspace on any other device.</p>
-<blockquote>
-<p>To start syncing your workspace, just sign in with Google in the menu.</p>
-</blockquote>
-</li>
-<li>
-<p>The file synchronization will keep one file of the workspace synced with one or multiple files in <strong>Google Drive</strong>, <strong>Dropbox</strong> or <strong>GitHub</strong>.</p>
-<blockquote>
-<p>Before starting to sync files, you must link an account in the <strong>Synchronize</strong> sub-menu.</p>
-</blockquote>
-</li>
+<li>결과적으로 가장 성능이 좋았던 모델링 방법은 PCA를 pipeline을 이용해 ElasticNet Regression모델과 연결 한 것이었다. 이때, PCA의 주성분인 PC의 개수는 3개로 지정하였으며, 이는 기존 분산량의 98.3%이상을 보 존한다. 해당 모델의 Test score(MSE)는 71.5%, Train score는 78%였다. 이를 기반으로 한 2달 뒤의 유튜브 조회수는 299,370회였다. PCA를 적용하지 않았을 때보다 25% 이상 높아진 결과로써, 변동성이 큰 유튜브 조회수의 데이터 특성상, PCA로 데이터를 압축하는 것이 분석에 효과적이었음을 알 수 있다. 한편, 높은 성 능을 기대했던 다층퍼셉트론, RNN의 LSTM셀을 이용한 방법에서는 Accuracy 혹은 MSE와 같은 평가 척도가 0에 가까운 것을 확인했다. 하이퍼파라미터나 활성화 함수의 변경에 따라 결과의 차이가 있을 수 있으나, 단지 구조가 복잡한 모델링 기법을 사용한다고 해서 성능의 향상을 기대할 수 없음을 알 수 있었다.</li>
+<li>이는 각기 다른 채널, 영상들의 전반적인 시 간에 따른 유튜브 조회수를 예측한 것이므로 향후 각 개인 채널별 영상들을 데이터 셋으로 선정한다면 해 당 모델을 이용하여 조회수를 예측하고, 컨텐츠 선정이 가능해보인다. 다만, 시도한 모델의 기법들이 다양하 므로 평가 척도가 고르지 못한 점, 각 기법들 중 가장 훈련 성과가 좋았던 모델을 중심으로 하이퍼파라미터 튜닝이 세분화되어 이루어지지 못한 것이 한계점이다. 따라서 후속 연구에는 하이퍼파라미터 튜닝, 조회수에 영향을 미치는 요인 및 조회수를 기반으로한 컨텐츠 제작 아이디어 추천 등의 다양한 분야에 대한 접근을 기대하는 바이다</li>
 </ul>
-<h2 id="open-a-file">Open a file</h2>
-<p>You can open a file from <strong>Google Drive</strong>, <strong>Dropbox</strong> or <strong>GitHub</strong> by opening the <strong>Synchronize</strong> sub-menu and clicking <strong>Open from</strong>. Once opened in the workspace, any modification in the file will be automatically synced.</p>
-<h2 id="save-a-file">Save a file</h2>
-<p>You can save any file of the workspace to <strong>Google Drive</strong>, <strong>Dropbox</strong> or <strong>GitHub</strong> by opening the <strong>Synchronize</strong> sub-menu and clicking <strong>Save on</strong>. Even if a file in the workspace is already synced, you can save it to another location. StackEdit can sync one file with multiple locations and accounts.</p>
-<h2 id="synchronize-a-file">Synchronize a file</h2>
-<p>Once your file is linked to a synchronized location, StackEdit will periodically synchronize it by downloading/uploading any modification. A merge will be performed if necessary and conflicts will be resolved.</p>
-<p>If you just have modified your file and you want to force syncing, click the <strong>Synchronize now</strong> button in the navigation bar.</p>
-<blockquote>
-<p><strong>Note:</strong> The <strong>Synchronize now</strong> button is disabled if you have no file to synchronize.</p>
-</blockquote>
-<h2 id="manage-file-synchronization">Manage file synchronization</h2>
-<p>Since one file can be synced with multiple locations, you can list and manage synchronized locations by clicking <strong>File synchronization</strong> in the <strong>Synchronize</strong> sub-menu. This allows you to list and remove synchronized locations that are linked to your file.</p>
-<h1 id="publication">Publication</h1>
-<p>Publishing in StackEdit makes it simple for you to publish online your files. Once you’re happy with a file, you can publish it to different hosting platforms like <strong>Blogger</strong>, <strong>Dropbox</strong>, <strong>Gist</strong>, <strong>GitHub</strong>, <strong>Google Drive</strong>, <strong>WordPress</strong> and <strong>Zendesk</strong>. With <a href="http://handlebarsjs.com/">Handlebars templates</a>, you have full control over what you export.</p>
-<blockquote>
-<p>Before starting to publish, you must link an account in the <strong>Publish</strong> sub-menu.</p>
-</blockquote>
-<h2 id="publish-a-file">Publish a File</h2>
-<p>You can publish your file by opening the <strong>Publish</strong> sub-menu and by clicking <strong>Publish to</strong>. For some locations, you can choose between the following formats:</p>
-<ul>
-<li>Markdown: publish the Markdown text on a website that can interpret it (<strong>GitHub</strong> for instance),</li>
-<li>HTML: publish the file converted to HTML via a Handlebars template (on a blog for example).</li>
-</ul>
-<h2 id="update-a-publication">Update a publication</h2>
-<p>After publishing, StackEdit keeps your file linked to that publication which makes it easy for you to re-publish it. Once you have modified your file and you want to update your publication, click on the <strong>Publish now</strong> button in the navigation bar.</p>
-<blockquote>
-<p><strong>Note:</strong> The <strong>Publish now</strong> button is disabled if your file has not been published yet.</p>
-</blockquote>
-<h2 id="manage-file-publication">Manage file publication</h2>
-<p>Since one file can be published to multiple locations, you can list and manage publish locations by clicking <strong>File publication</strong> in the <strong>Publish</strong> sub-menu. This allows you to list and remove publication locations that are linked to your file.</p>
-<h1 id="markdown-extensions">Markdown extensions</h1>
-<p>StackEdit extends the standard Markdown syntax by adding extra <strong>Markdown extensions</strong>, providing you with some nice features.</p>
-<blockquote>
-<p><strong>ProTip:</strong> You can disable any <strong>Markdown extension</strong> in the <strong>File properties</strong> dialog.</p>
-</blockquote>
-<h2 id="smartypants">SmartyPants</h2>
-<p>SmartyPants converts ASCII punctuation characters into “smart” typographic punctuation HTML entities. For example:</p>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th>ASCII</th>
-<th>HTML</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Single backticks</td>
-<td><code>'Isn't this fun?'</code></td>
-<td>‘Isn’t this fun?’</td>
-</tr>
-<tr>
-<td>Quotes</td>
-<td><code>"Isn't this fun?"</code></td>
-<td>“Isn’t this fun?”</td>
-</tr>
-<tr>
-<td>Dashes</td>
-<td><code>-- is en-dash, --- is em-dash</code></td>
-<td>– is en-dash, — is em-dash</td>
-</tr>
-</tbody>
-</table><h2 id="katex">KaTeX</h2>
-<p>You can render LaTeX mathematical expressions using <a href="https://khan.github.io/KaTeX/">KaTeX</a>:</p>
-<p>The <em>Gamma function</em> satisfying <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Γ</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">!</mo><mspace width="1em"></mspace><mi mathvariant="normal">∀</mi><mi>n</mi><mo>∈</mo><mi mathvariant="double-struck">N</mi></mrow><annotation encoding="application/x-tex">\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord">Γ</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mclose">!</span><span class="mspace" style="margin-right: 1em;"></span><span class="mord">∀</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.68889em; vertical-align: 0em;"></span><span class="mord mathbb">N</span></span></span></span></span> is via the Euler integral</p>
-<p><span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Γ</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mi mathvariant="normal">∞</mi></msubsup><msup><mi>t</mi><mrow><mi>z</mi><mo>−</mo><mn>1</mn></mrow></msup><msup><mi>e</mi><mrow><mo>−</mo><mi>t</mi></mrow></msup><mi>d</mi><mi>t</mi> <mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
-\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord">Γ</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right: 0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 2.32624em; vertical-align: -0.91195em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right: 0.44445em; position: relative; top: -0.001125em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.41429em;"><span class="" style="top: -1.78805em; margin-left: -0.44445em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span><span class="" style="top: -3.8129em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.91195em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.864108em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right: 0.04398em;">z</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.843556em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathdefault mtight">t</span></span></span></span></span></span></span></span></span><span class="mord mathdefault">d</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">.</span></span></span></span></span></span></p>
-<blockquote>
-<p>You can find more information about <strong>LaTeX</strong> mathematical expressions <a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">here</a>.</p>
-</blockquote>
-<h2 id="uml-diagrams">UML diagrams</h2>
-<p>You can render UML diagrams using <a href="https://mermaidjs.github.io/">Mermaid</a>. For example, this will produce a sequence diagram:</p>
-<div class="mermaid"><svg xmlns="http://www.w3.org/2000/svg" id="mermaid-svg-w4F4Et5g28wz202A" height="100%" width="100%" style="max-width:750px;" viewBox="-50 -10 750 457.03125"><g></g><g><line id="actor12" x1="75" y1="5" x2="75" y2="446.03125" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="0" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">Alice</tspan></text></g><g><line id="actor13" x1="275" y1="5" x2="275" y2="446.03125" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="200" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">Bob</tspan></text></g><g><line id="actor14" x1="475" y1="5" x2="475" y2="446.03125" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="400" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="475" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="475" dy="0">John</tspan></text></g><defs><marker id="arrowhead" refX="5" refY="2" markerWidth="6" markerHeight="4" orient="auto"><path d="M 0,0 V 4 L6,2 Z"></path></marker></defs><defs><marker id="crosshead" markerWidth="15" markerHeight="8" orient="auto" refX="16" refY="4"><path fill="black" stroke="#000000" stroke-width="1px" d="M 9,2 V 6 L16,4 Z" style="stroke-dasharray: 0, 0;"></path><path fill="none" stroke="#000000" stroke-width="1px" d="M 0,1 L 6,7 M 6,1 L 0,7" style="stroke-dasharray: 0, 0;"></path></marker></defs><g><text x="175" y="93" class="messageText" style="text-anchor: middle;">Hello Bob, how are you?</text><line x1="75" y1="100" x2="275" y2="100" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="375" y="128" class="messageText" style="text-anchor: middle;">How about you John?</text><line x1="275" y1="135" x2="475" y2="135" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="175" y="163" class="messageText" style="text-anchor: middle;">I am good thanks!</text><line x1="275" y1="170" x2="75" y2="170" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#crosshead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="375" y="198" class="messageText" style="text-anchor: middle;">I am good thanks!</text><line x1="275" y1="205" x2="475" y2="205" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#crosshead)" style="fill: none;"></line></g><g><rect x="500" y="215" fill="#EDF2AE" stroke="#666" width="150" height="76.03125" rx="0" ry="0" class="note"></rect><text x="496" y="239" fill="black" class="noteText"><tspan x="516" fill="black">Bob thinks a long</tspan></text><text x="496" y="253.40625" fill="black" class="noteText"><tspan x="516" fill="black">long time, so long</tspan></text><text x="496" y="267.8125" fill="black" class="noteText"><tspan x="516" fill="black">that the text does</tspan></text><text x="496" y="281.421875" fill="black" class="noteText"><tspan x="516" fill="black">not fit on a row.</tspan></text></g><g><text x="175" y="319.03125" class="messageText" style="text-anchor: middle;">Checking with John...</text><line x1="275" y1="326.03125" x2="75" y2="326.03125" class="messageLine1" stroke-width="2" stroke="black" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="275" y="354.03125" class="messageText" style="text-anchor: middle;">Yes... John, how are you?</text><line x1="75" y1="361.03125" x2="475" y2="361.03125" class="messageLine0" stroke-width="2" stroke="black" style="fill: none;"></line></g><g><rect x="0" y="381.03125" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="413.53125" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">Alice</tspan></text></g><g><rect x="200" y="381.03125" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="413.53125" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">Bob</tspan></text></g><g><rect x="400" y="381.03125" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="475" y="413.53125" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="475" dy="0">John</tspan></text></g></svg></div>
-<p>And this will produce a flow chart:</p>
-<div class="mermaid"><svg xmlns="http://www.w3.org/2000/svg" id="mermaid-svg-SK5LLiUoyorqhv7T" width="100%" style="max-width: 438.9460029602051px;" viewBox="0 0 438.9460029602051 159.0400047302246"><g transform="translate(-12, -12)"><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath" style="opacity: 1;"><path class="path" d="M103.12130905507418,73.66000080108643L156.45499992370605,45.96000099182129L222.20499992370605,45.96000099182129" marker-end="url(#arrowhead87)" style="fill:none"></path><defs><marker id="arrowhead87" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M103.12130905507418,114.78000354766846L156.45499992370605,142.4800033569336L205.8400001525879,142.4800033569336" marker-end="url(#arrowhead88)" style="fill:none"></path><defs><marker id="arrowhead88" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M274.12500190734863,45.96000099182129L315.4900016784668,45.96000099182129L360.84945284729525,74.86055129165135" marker-end="url(#arrowhead89)" style="fill:none"></path><defs><marker id="arrowhead89" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M290.4900016784668,142.4800033569336L315.4900016784668,142.4800033569336L360.84945249691594,114.57945327892892" marker-end="url(#arrowhead90)" style="fill:none"></path><defs><marker id="arrowhead90" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(156.45499992370605,45.96000099182129)" style="opacity: 1;"><g transform="translate(-24.385000228881836,-10.5600004196167)" class="label"><foreignObject width="60.962501525878906" height="26.399999618530273"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">Link text</span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g class="node" id="A" transform="translate(63.53499984741211,94.22000217437744)" style="opacity: 1;"><rect rx="0" ry="0" x="-43.53499984741211" y="-20.5600004196167" width="87.06999969482422" height="41.1200008392334"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-33.53499984741211,-10.5600004196167)"><foreignObject width="83.8375015258789" height="26.399999618530273"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Square Rect</div></foreignObject></g></g></g><g class="node" id="B" transform="translate(248.16500091552734,45.96000099182129)" style="opacity: 1;"><circle x="-25.96000099182129" y="-20.5600004196167" r="25.96000099182129"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-15.960000991821289,-10.5600004196167)"><foreignObject width="39.900001525878906" height="26.399999618530273"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Circle</div></foreignObject></g></g></g><g class="node" id="C" transform="translate(248.16500091552734,142.4800033569336)" style="opacity: 1;"><rect rx="5" ry="5" x="-42.32500076293945" y="-20.5600004196167" width="84.6500015258789" height="41.1200008392334"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-32.32500076293945,-10.5600004196167)"><foreignObject width="80.8125" height="26.399999618530273"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Round Rect</div></foreignObject></g></g></g><g class="node" id="D" transform="translate(391.71800231933594,94.22000217437744)" style="opacity: 1;"><polygon points="51.22800092697144,0 102.45600185394288,-51.22800092697144 51.22800092697144,-102.45600185394288 0,-51.22800092697144" rx="5" ry="5" transform="translate(-51.22800092697144,51.22800092697144)"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-26.360000610351562,-10.5600004196167)"><foreignObject width="65.9000015258789" height="26.399999618530273"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Rhombus</div></foreignObject></g></g></g></g></g></g></svg></div>
+<h2 id="참고-자료">참고 자료</h2>
+<p><a href="https://www.kaggle.com/datasnaek/youtube-new">kaggle-유튜브인기동영상 데이터셋</a><br>
+<a href="https://teddylee777.github.io/tensorflow/LSTM%EC%9C%BC%EB%A1%9C-%EC%98%88%EC%B8%A1%ED%95%B4%EB%B3%B4%EB%8A%94-%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%EC%A3%BC%EA%B0%80">LSTM 예측</a><br>
+[유튜브 데이터 분석]</p>
 
