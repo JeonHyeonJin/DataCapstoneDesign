@@ -32,6 +32,10 @@
 
 <img src="https://user-images.githubusercontent.com/50453570/102893600-35553000-44a5-11eb-9174-51cf0434b8bb.png" width="50%"></img>
 
+![image](https://user-images.githubusercontent.com/50453570/102894125-f673aa00-44a5-11eb-9f94-875e4cdc5b91.png)
+
+
+
 
 <img src="https://github.com/JeonHyeonJin/DataCapstoneDesign/blob/master/lstm_unit20_eval.png?raw=true"width="90%"></img>
 <p>•views-comment_count : 매우 강한 상관관계<br>
