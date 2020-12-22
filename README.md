@@ -3,7 +3,8 @@
 
 ---
 
-<h1 id="회귀-분석과-rnn을-이용한-youtube-인기-동영상-조회수-예측"><strong>회귀 분석과 RNN을 이용한 Youtube 인기 동영상 조회수 예측</strong></h1>
+<h1 id="회귀-분석과-rnn을-이용한-youtube-인기-동영상-조회수-예측"><strong>회귀 분석과 RNN을 이용한 
+  Youtube 인기 동영상 조회수 예측</strong></h1>
 <h2 id="overview">Overview</h2>
 <ul>
 <li>Youtube 특징
@@ -47,7 +48,7 @@
 
 <h2 id="연구-결과">연구 결과</h2>
 <p><strong>kaggle-한국유튜브인기동영상 Raw Data</strong></p>
-<img src="https://user-images.githubusercontent.com/50453570/102903112-3c833a80-44b3-11eb-8efa-da54a1c4a780.png" width="80%"></img>
+<img src="https://user-images.githubusercontent.com/50453570/102903112-3c833a80-44b3-11eb-8efa-da54a1c4a780.png" width="95%"></img>
 <li>Raw data에는 총 16개의 column이 존재한다.</li>
 <li>data type은 string, int64, object, boolean, link와 같이 다양한 타입이 존재한다.</li>
 </ul>
