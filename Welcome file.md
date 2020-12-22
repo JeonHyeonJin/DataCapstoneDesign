@@ -30,7 +30,7 @@
 </ol>
 <h2 id="correlation-analysis">1. Correlation Analysis</h2>
 
-<img src="https://user-images.githubusercontent.com/50453570/102893600-35553000-44a5-11eb-9174-51cf0434b8bb.png" width="90%"></img>
+<img src="https://user-images.githubusercontent.com/50453570/102893600-35553000-44a5-11eb-9174-51cf0434b8bb.png" width="50%"></img>
 
 
 <img src="https://github.com/JeonHyeonJin/DataCapstoneDesign/blob/master/lstm_unit20_eval.png?raw=true"width="90%"></img>
