@@ -26,14 +26,13 @@
 <li>Discussion &amp; Futureworks</li>
 </ol>
 <h2 id="연구-기법">연구 기법</h2>
-<img src="https://user-images.githubusercontent.com/50453570/102893600-35553000-44a5-11eb-9174-51cf0434b8bb.png" width="90%"></img>
 <ol>
-  ![image](https://user-images.githubusercontent.com/50453570/102906716-5ffcb400-44b8-11eb-8cb0-c41bc14d392e.png)
 <li>PCA<br>
-  <img src="https://user-images.githubusercontent.com/50453570/102902818-cbdc1e00-44b2-11eb-855f-24d72d055c30.png" width="60%"></img>
+  <img src="https://user-images.githubusercontent.com/50453570/102902818-cbdc1e00-44b2-11eb-855f-24d72d055c30.png" width="40%"></img>
+  
 • PCA는 데이터의 분산(variance)을 최대한 보존하면서 서로 직교하는 새 기저(축)를 찾아, 고차원 공간의 표본들을 선형 연관성이 없는저차원 공간으로 변환하는 기법으로, 주성분 분석, 데이터 압축 등에 활용된다. 본 연구에서는 <strong>새로운 축으로 raw data를 저차원 공간으로 변환</strong>하는데 사용한다.</li>
 <li>RNN - LSTM<br>
-  <img src="https://user-images.githubusercontent.com/50453570/102902779-c088f280-44b2-11eb-8bd3-f5616b861888.png" width="60%"></img>
+  <img src="https://user-images.githubusercontent.com/50453570/102902779-c088f280-44b2-11eb-8bd3-f5616b861888.png" width="50%"></img>
 • RNN(Recurrent Neural Network)은 순환 신경망으로, 고정 길이 입력이 아닌 임의의 시퀀스를 다룰 수 있는 신경망이다.<br>
 • 이때, LSTM셀은 RNN 신경망 구조에서 빠른 훈련 수렴과 데이터 장기 의존성을 지원하는 층으로, LSTM에서는 해당 층의 출력이 곧바로 나가지 않고 장기 상태에서 가장 중요한 부분이 저장된다.</li>
 <li>Linear Regression<br>
@@ -93,7 +92,6 @@ LSTM의 Unit 개수를 다르게 하여 unit 16, 20, 32개로 조회수 예측�
 <img src="https://user-images.githubusercontent.com/50453570/102903438-b0bdde00-44b3-11eb-8cd4-0b155001eae6.png" width="70%"></img>
 <li>Unit 32</li>
 <img src="https://user-images.githubusercontent.com/50453570/102903498-c4694480-44b3-11eb-9d8f-42805bfdda93.png" width="70%"></img>
-
 </ol>
 
 <h2 id="결론-및-제언">결론 및 제언</h2>
@@ -104,5 +102,6 @@ LSTM의 Unit 개수를 다르게 하여 unit 16, 20, 32개로 조회수 예측�
 <h2 id="참고-자료">참고 자료</h2>
 <p><a href="https://www.kaggle.com/datasnaek/youtube-new">kaggle-유튜브인기동영상 데이터셋</a><br>
 <a href="https://teddylee777.github.io/tensorflow/LSTM%EC%9C%BC%EB%A1%9C-%EC%98%88%EC%B8%A1%ED%95%B4%EB%B3%B4%EB%8A%94-%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%EC%A3%BC%EA%B0%80">LSTM 예측</a><br>
-[유튜브 데이터 분석]</p>
+<a href="https://www.kaggle.com/pushkaraj/predict-likes-for-next-2-months">유튜브 조회수 분석</a><br>
+</p>
 
