@@ -29,6 +29,8 @@
 <li>Discussion &amp; Futureworks</li>
 </ol>
 <h2 id="correlation-analysis">1. Correlation Analysis</h2>
+
+<img src="https://github.com/JeonHyeonJin/DataCapstoneDesign/blob/master/lstm_unit20_eval.png?raw=true"width="90%"></img>
 <p>•views-comment_count : 매우 강한 상관관계<br>
 •views-likes : 강한 상관관계<br>
 •views-dislikes : 중간 정도 상관관계 •category_id-views / publish_time-views : 상관성이 거의 없음.</p>
